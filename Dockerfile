@@ -1,9 +1,11 @@
-FROM ubuntu:latest
+# Use the official Nginx image as base
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy the index.html file from the host machine to the container
+COPY . /usr/share/nginx/html/
 
-COPY index.html /app
-
+# Expose port 80 to the outside world
 EXPOSE 80
 
-ENTRYPOINT [ "/app/index.html" ]
+# Set the default command to start Nginx and serve the index.html file
+CMD ["nginx", "-g", "daemon off;"]

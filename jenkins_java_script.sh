@@ -1,15 +1,13 @@
-cat <<EOF > Jenkins_java_script.sh
 #!/bin/bash
 #update and install Java
 sudo apt update
-sudp apt install openjdk-17-jre -y
-#install Jenkins    
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-echo deb http://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
-sudo apt update
-sudo apt install jenkins -y
-sudo apt update
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
-EOF 
-chmod +x jenkins_java_script.sh
+sudo apt install openjdk-17-jre -y
+
+#install jenkins
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins

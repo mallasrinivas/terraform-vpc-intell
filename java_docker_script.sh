@@ -1,4 +1,3 @@
-cat <<EOF > java_docker_script.sh
 #!/bin/bash
 #update and install Java
 sudo apt update
@@ -9,5 +8,3 @@ sudo apt install docker.io -y
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
-EOF 
-chmod +x java_docker_script.sh
